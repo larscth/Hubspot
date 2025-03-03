@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OAuth Callback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2em;
+      background: #f9f9f9;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 1.5em;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>OAuth Callback</h1>
+    <p>Die App wurde erfolgreich autorisiert.</p>
+    <p id="result">Warte auf den Authorization Code...</p>
+  </div>
+  <script>
+    // URL-Parameter auslesen
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('code')) {
+      const code = params.get('code');
+      document.getElementById('result').innerText = 'Authorization Code: ' + code;
+    } else {
+      document.getElementById('result').innerText = 'Kein Authorization Code erhalten.';
+    }
+  </script>
+</body>
+</html>
